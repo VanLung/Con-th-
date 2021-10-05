@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Register Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="CONF-INF/general.css">
+
+    </head>
+    <body>
+    <center>
+        <h1>CREATE YOUR OWN ACCOUNT NOW!!!</h1>
+        <br/>
+        <form action="DispatchServlet" method="POST">
+            <table border="0">
+                <tr>
+                    <td>
+                        Username*
+                    </td>
+                    <td>
+                        <input type="text" name="txtUsername" value=""/>
+                        (6-30 chars)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password*
+                    </td>
+                    <td>
+                        <input type="password" name="txtPassword" value=""/>
+                        (6-20 chars)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Confirm Pass*
+                    </td>
+                    <td>
+                        <input type="password" name="txtConfirm" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Full Name*
+                    </td>
+                    <td>
+                        <input type="text" name="txtFullname" value="" />
+                        (2-50 chars)
+                    </td>
+                </tr>
+            </table>
+            
+            <input type="submit" value="Create New Account" name="action" class="btn"/>
+            <input type="reset" value="Reset" class="btn"/>
+        </form> <br/>
+    </center>
+</body>
+</html>

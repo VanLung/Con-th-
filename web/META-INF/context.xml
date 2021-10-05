@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Assignment_PRJ301_3w">
+    <Resource name="Kevin" auth="Container" type="javax.sql.DataSource"
+            username="sa" password="12345"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://localhost:1433;databaseName=Assignment_PRJ301_3w;instanceName=SQLEXPRESS"
+    >      
+    </Resource>
+</Context>
