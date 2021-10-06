@@ -18,7 +18,6 @@ Back end: ( deadline,tối mai t4 5/10)
 
 Front end: Lưng,Khang (t5 6/10)
 -Thêm trang details
--Thêm trang checkout
 -Xóa search.jsp
 -Xóa createAccount.jsp,createAccount.html
 
