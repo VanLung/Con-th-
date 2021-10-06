@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author PC
  */
 public class ProductDTO implements Serializable{
-   private int ID;
+    private int ID;
     private String proName;
     private String description;
     private float price;

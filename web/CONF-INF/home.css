@@ -357,7 +357,7 @@ body {
     display: flex;
 }
 .row .col-1{
-    width: 60%;
+    width: 50%;
 }
 .row .col-2{
     width: 40%;
@@ -372,8 +372,84 @@ body {
     margin-right: 105px;
     margin-top: 30px;
     font-weight: normal;
-     
+
 }
 .col-2 h4{
     font-size: 14px;
+}
+
+.product-list img{
+    padding-left: 40px;
+}
+
+b {
+    font-size: 30px;
+}
+
+.detail {
+    margin: 0 8px 30px 40px;
+    color: white;
+    background-color: #217ecf;
+    height: 28px;
+    width: 83px;
+    border-radius: 4px;
+    border: none;
+}
+
+.order {
+    color: white;
+    background-color: rgb(233, 158, 18);
+    height: 28px;
+    width: 120px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 14px
+}
+
+.order:hover {
+    background-color: rgb(145, 97, 9);;
+}
+
+.detail:hover {
+    background-color: #195c96;
+}
+
+.order, .detail:hover {
+    cursor: pointer;
+}
+
+.item {
+    float:left;
+    width: 380px; 
+    display:block;
+    padding-top: 37px;
+    padding-right: 43px;
+    border: 1px solid silver;
+    margin-right: 50px;
+    background-color: whitesmoke;
+
+}
+
+.product-list{
+    padding-top: 45px;
+    padding-left: 60px;
+}
+
+.item-body {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    padding-left: 30px;
+    padding-top: 16px;
+}
+
+.item-title {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    padding-left: 30px;
+}
+
+.item img {
+    padding-top: 20px;
 }

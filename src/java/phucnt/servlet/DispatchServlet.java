@@ -20,17 +20,12 @@ public class DispatchServlet extends HttpServlet {
 
     private final String ERROR_PAGE = "error.html";
     private final String LOGIN_CONTROLLER = "loginServlet";
-    private final String CREATE_ACCOUNT_CONTROLLER = "CreateAccountServlet";
+    private final String DETAIL_CONTROLLER = "ProductDetailServlet";
     private final String LOGOUT_CONTROLLER = "logoutServlet";
-    private final String STARTUP_CONTROLLER = "StartupServlet";
-    private final String SEARCH_CONTROLLER = "SearchServlet";
-    private final String DELETE_CONTROLLER = "DeleteProductServlet";
-    private final String UPDATE_CONTROLLER = "UpdateProductServlet";
+   
     private final String INSERT_CONTROLLER = "InsertProductServlet";
-    private final String ADD_FLOWER_CONTROLLER = "AddFlowerServlet";
-    private final String EDIT_FLOWER_CONTROLLER = "EditFlowerServlet";
+    private final String ADD_PRODUCT_CONTROLLER = "AddProductServlet";
     private final String REMOVE_FLOWER_CONTROLLER = "RemoveFlowerServlet";
-    private final String CHECKOUT_CONTROLLER = "CheckOutServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,7 +45,7 @@ public class DispatchServlet extends HttpServlet {
 
         try {
             if (action == null) {
-                url = STARTUP_CONTROLLER;
+                
             } else if (action.equals("Login")) {
                 url = LOGIN_CONTROLLER;
             } else if (action.equals("Logout")) {
@@ -58,10 +53,12 @@ public class DispatchServlet extends HttpServlet {
             } else if (action.equals("Insert")){
                 url = INSERT_CONTROLLER;
             } else if (action.equals("Add")){
-                url = ADD_FLOWER_CONTROLLER;
+                url = ADD_PRODUCT_CONTROLLER;
             } else if (action.equals("Remove From Cart")){
                 url = REMOVE_FLOWER_CONTROLLER;
-            } 
+            } else if (action.equals("details")) {
+                url = DETAIL_CONTROLLER;
+            }
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
             out.close();

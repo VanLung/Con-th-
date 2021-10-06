@@ -28,7 +28,7 @@ import phucnt.tblUsers.UserDTO;
 public class loginServlet extends HttpServlet {
 
     private final String INVALID_PAGE = "login.jsp";
-    private final String HOME_PAGE = "Home.jsp";
+    private final String HOME_PAGE = "CreateNewProduct.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +57,7 @@ public class loginServlet extends HttpServlet {
                 url = HOME_PAGE;
                 response.sendRedirect(url);
             } else {
-                errors.setLoginInfoNotMatch("Invalid userID or password");
+                errors.setLoginInfoNotMatch("Invalid userName or password");
                 request.setAttribute("INVALID_LOGIN", errors);
                 request.getRequestDispatcher(url).forward(request, response);
             }

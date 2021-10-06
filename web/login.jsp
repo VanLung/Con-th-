@@ -9,63 +9,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" rel="stylesheet" href="CONF-INF/general.css">
-        <title>Login Page</title>
-
+        <link rel="stylesheet" href="CONF-INF/login.css">
     </head>
-    <body>
-    <center>
-        <h1>LOGIN NOW!!!</h1>
-        <c:set var="error" value="${requestScope.INVALID_LOGIN}"/>
-        <form action="DispatchServlet" method="POST">
-            <table border="0">
-                <tr>
-                    <td>
-                        User ID 
-                    </td>
-                    <td>
-                        <input type="text" name="txtUserID" value="" />
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>
-                        Password 
-                    </td>
-                    <td>
-                        <input type="password" name="txtPassword" value="" /><br/>
-                    </td>
-                </tr>
+    <body>
+        <header>
+            <h2>Mobile Store</h2> 
+        </header>
+
+        <div class="login-form">
+            <div class="form-title">
+                <p>
+                    Please sign in
+                </p>
+            </div>
+            <c:set var="error" value="${requestScope.INVALID_LOGIN}"/>
+            <form action="DispatchServlet">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="User name" name="txtUserID">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="txtPassword">
+                </div>
 
                 <c:if test="${not empty error.loginInfoNotMatch}">
-                    <tr>
-                        <td colspan="2" style="text-align: center">
-                            <font color="red">
-                            ${error.loginInfoNotMatch}
-                            </font>
-                        </td>
-                    </tr>
+                    <font color="red" class="error-control">
+                    ${error.loginInfoNotMatch}
+                    </font>
                 </c:if>
 
-                <tr>
-                    <td>
-                        Remember User? 
-                    </td>
-                    <td>
-                        <input type="checkbox" name="chkCookie" value="ON" />
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" value="Login" name="action" class="btn"/>
-            <input type="reset" value="Reset" class="btn"/>
-        </form>
-        <br/>
-        
-        <p>
-            <a href="createAccount.html">Create Your Own Account now!!!</a>
-        </p>
-    </center>
-</body>
+                <button type="submit" class="btn btn-login" name="action" value="Login">
+                    Login
+                </button>
+            </form>
+        </div>
+    </body>
 </html>

@@ -29,7 +29,7 @@ public class ShowProductServlet extends HttpServlet {
         String url = HOME_PAGE;
         try {
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> products = dao.searchProduct("");
+            List<ProductDTO> products = dao.showMobile();
             request.setAttribute(ATTR_LIST_PRODUCT, products);
             request.getRequestDispatcher(url).forward(request, response);
         } catch (SQLException ex) {

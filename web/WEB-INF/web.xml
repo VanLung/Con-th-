@@ -15,7 +15,7 @@
     </session-config>
     
     <welcome-file-list>
-        <welcome-file>StartupServlet</welcome-file>
+        <welcome-file>ShowProductServlet</welcome-file>
     </welcome-file-list>
     
     <error-page>

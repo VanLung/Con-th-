@@ -7,141 +7,133 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" rel="stylesheet" href="CONF-INF/general.css">
-        <title>Create Product Page</title>
-        <style>
-            * {
-                font-family: cursive;
-            }
-            a {
-                text-decoration: none;
-                color: blue;
-            }
-            table {
-                width: 60%;
-                float: left;
-                margin-left: 30%;
-                text-align: left;
-            }
-        </style>
+        <link rel="stylesheet" href="CONF-INF/addProduct.css">
     </head>
-    <body>    
-    <center>
-        <h2>Create New Product</h2>
-        <form action="DispatchServlet">
-            <table border="0">
-                <c:set var="errors" value="${requestScope.INSERT_ERROR}"/>
-                <tr>
-                    <td>
-                        Product ID 
-                    </td>
-                    <td>
-                        <input type="number" name="txtProductID" value="${param.txtProductID}" />(1-4)
-                    </td>
-                </tr>    
-                <c:if test="${not empty errors.productIDLengthError}">
-                    <tr>
-                        <td colspan="2">
-                            <font color="red">
-                            ${errors.productIDLengthError} 
-                            </font>
-                        </td>
-                    </tr>
+
+    <body>
+        <header>
+            <h1>Products</h1> 
+            <p>Add products</p>
+            <form action="DispatchServlet">
+                <button class="btn btn-logout" type="submit" name="action" value="Logout">
+                    Logout
+                </button>
+            </form>
+        </header>
+
+        <div class="add-form">
+            <div class="form-title">
+                <p>
+                    Add new product
+                </p>
+            </div>
+            <c:set var="errors" value="${requestScope.ERROR_ADD_PRODUCT}"/>
+            <form action="DispatchServlet">
+                <div class="form-group">
+                    <label class="pName"> Product Name</label>
+                    <input type="text" class="form-control" value="" name="proName">
+                </div>
+
+                <c:if test="${not empty errors.proNameLengthErr}">
+                    <font color="red">
+                    ${errors.proNameLengthErr} 
+                    </font>
                 </c:if>
 
-                <tr>
-                    <td>
-                        Product Name
-                    </td>
-                    <td>
-                        <input type="text" name="txtProductName" value="" />(4-10)
-                    </td>
-                </tr>    
-                <c:if test="${not empty errors.productNameLengthError}">
-                    <tr>
-                        <td colspan="2">
-                            <font color="red">
-                            ${errors.productNameLengthError} 
-                            </font>
-                        </td>
-                    </tr>
+                <div class="form-group">
+                    <label class="price"> Unit Price</label>
+                    <input type="text" class="form-control" value="" name="price">
+                </div>
+
+                <c:if test="${not empty errors.priceFormatErr}">
+                    <font color="red">
+                    ${errors.priceFormatErr}
+                    </font>
                 </c:if>
 
-                <tr>
-                    <td>
-                        Quantity
-                    </td>
-                    <td colspan="2">
-                        <input type="text" name="txtQuantity">(1-1000)
-                    </td>
-                </tr>
-                <c:if test="${not empty errors.quantitySizeError}">
-                    <tr>
-                        <td colspan="2"> 
-                            <font color="red">
-                            ${errors.quantitySizeError} <br/>
-                            </font>
-                        </td>
-                    </tr>
+                <div class="form-group">
+                    <label class="stock"> Units In Stock</label>
+                    <input type="number" class="form-control" value="" name="stock">
+                </div>
+
+                <c:if test="${not empty errors.stockFormatErr}">
+                    <font color="red">
+                        ${errors.stockFormatErr}
+                    </font>
                 </c:if>
 
-                <tr>
-                    <td>
-                        Price
-                    </td>
-                    <td>
-                        <input type="text" name="txtPrice" value="" />(1-1000)
-                    </td>
-                </tr>
-                <c:if test="${not empty errors.priceSizeError}">
-                    <tr colspan="2">
-                        <td>
-                            <font color="red">
-                            ${errors.priceSizeError} <br/>
-                            </font>
-                        </td>
-                    </tr>
+                <div class="form-group">
+                    <label class="description"> Description</label>
+                    <textarea class="form-control" value="" name="description">
+
+                    </textarea>
+                </div>
+
+                <c:if test="${not empty errors.descriptionLengthErr}">
+                    <font color="red">
+                        ${errors.descriptionLengthErr}
+                    </font>
                 </c:if>
 
-                <tr>
-                    <td>
-                        Category ID
-                    </td>
-                    <td>
-                        <input type="text" name="txtCategoryID" value="" />(r1,y1,b1)<br/>
-                    </td>
-                </tr>
-                <c:if test="${not empty errors.categoryIDLengthError}">
-                    <tr>
-                        <td colspan="2">
-                            <font color="red">
-                            ${errors.categoryIDLengthError} <br/>
-                            </font>
-                        </td>
-                    </tr>
+                <div class="form-group">
+                    <label class="manufacturer"> Manufacturer</label>
+                    <input type="text" class="form-control" value="" name="manufacturer">
+                </div>
+
+                <c:if test="${not empty errors.manufacturerLengthErr}">
+                    <font color="red">
+                        ${errors.manufacturerLengthErr}
+                    </font>
                 </c:if>
-            </table> <br/>
 
-            <input type="submit" value="Insert" name="action" class="btn"/>
-            <input type="reset" value="Reset" class="btn"/>
-        </form>
+                <div class="form-group">
+                    <label class="category"> Category</label>
+                    <input type="text" class="form-control" value="" name="category">
+                </div>
 
-        <c:if test="${not empty errors.productIDisExisted}">
-            <font color="red">
-            ${errors.productIDisExisted} <br/>
-            </font>
-        </c:if> <br/>
+                <c:if test="${not empty errors.categoryLengthErr}">
+                    <font color="red" class="error-control">
+                        ${errors.categoryLengthErr}
+                    </font>
+                </c:if>
 
-        <c:if test="${not empty errors.productNameisExisted}">
-            <font color="red">
-            ${errors.productNameisExisted} <br/>
-            </font>
-        </c:if> <br/>
-        
-        <a href="search.jsp">Click here to go back to search page</a>
-    </center>
-</body>
+                <div class="form-group-radio">
+                    <label class="condition"> Condition</label>
+
+                    <label class="radio">
+                        New 
+                        <input type="radio" class="form-control-radio" value="1" name="condition"> 
+                    </label>
+
+                    <label class="radio">
+                        Old 
+                        <input type="radio" class="form-control-radio" value="0" name="condition"> 
+                    </label>
+
+                    <label class="radio">
+                        Refurbished <input type="radio" class="form-control-radio" value="2" name="condition">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="condition"> Product image file</label>
+                    <input type="text" class="form-control" value="" name="imgLink" value="">
+                </div>
+
+                <c:if test="${not empty errors.imgLengthErr}">
+                    <font color="red">
+                        ${errors.imgLengthErr}
+                    </font>
+                </c:if>
+
+                <button class="btn btn-add" type="submit" name="action" value="Add">
+                    Add Product
+                </button>
+            </form>
+        </div>
+    </body>
+
 </html>

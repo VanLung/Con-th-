@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 6, 2021, 9:04:11 PM
+    Author     : Administrator
+*/
+header {
+    background-color: rgba(236, 236, 236, 0.925);
+    padding: 0.02%;
+    font-size: x-large;
+    text-indent: 1.6%;
+}
+
+.form-title {
+    width: 350px;
+    background-color: rgba(236, 236, 236, 0.925);
+    margin: auto;
+    padding: 5px -0.1px 5px 0;
+    margin-top: 30px;
+    text-indent: 8px;
+    border: 1px solid silver;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.login-form {
+    width: 350px;
+    margin: auto;
+}
+
+form {
+    padding: 12px;
+    border: 1px solid silver;
+}
+
+.form-group {
+    padding-bottom: 20px;
+    border-radius: 14px;
+}
+
+.form-control {
+    position: relative;
+    line-height: 26px;
+    width: 320px;
+    border-radius: 5px;
+    border-color: silver;
+    border-style: solid;
+}
+
+.error-control {
+    position: relative;
+    line-height: 26px;
+    width: 320px;
+}
+
+.btn-login {
+    color: #fff !important;
+    background-color: rgb(73, 209, 73) !important;
+    border: 1px solid rgb(73, 209, 73) !important;
+    border-radius: 8px !important;
+    font-weight: bold !important;
+    padding: 0.6vw !important;
+    width: 100% !important;
+    font-size: 16px;
+}
+
+.form-control::placeholder {
+    text-indent: 6px;
+}
+
+.btn-login:hover {
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@
     Author     : NGUYEN VAN LUNG SE140193
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -88,7 +89,7 @@
                                                      aria-hidden="true"></i></button>
                         </form>
                     </li>
-                    <li><a href="viewCartServlet">
+                    <li><a href="viewCart.jsp">
                             <button id="cart">
                                 <i class="fa fa-shopping-basket"
                                    aria-hidden="true"></i>
@@ -96,7 +97,7 @@
                             </button>
                         </a>
                     </li>
-                    <li><a href="login.jsp">
+                    <li><a href="login.html">
                             <button id="cart">
                                 <i class="fas fa-user-circle" aria-hidden="true"></i>
                                 Login
@@ -161,38 +162,36 @@
 
         <%-- Content --%>
 
+        <c:set var="detail" value="${requestScope.LOAD_DETAIL}"/>
         <div class="small-container single-product">
-            <div class="row">
-                <div class="col-1">
-                    <img
-                        src="https://cdn.tgdd.vn/2021/10/campaign/SP-503x422.png"
-                        width="30%" alt="">
-                </div>
-                <div class="col-2">
-                    
-                    <h2>Samsung Galaxy Z Fold 3 5G</h2>
-                    <h4>Descriptions</h4>
-                    <h4>49.490.000đ</h4>
-                    <h4>Item code: 123</h4>
-                    <h4>Manufacturer: Samsung</h4>
-                    <h4>Category: Samsung</h4>
-                    <h4>Available units stock: 800</h4>
+            <form action="DispatchServlet">
+                <div class="row">
+                    <div class="col-1">
+                        <img
+                            src="${detail.imgLink}"
+                            width="30%" alt="">
+                    </div>
+                    <div class="col-2">
+                        <h2>${detail.proName}</h2>
+                        <h4>Descriptions: ${detail.description}</h4>
+                        <h4>Item code: ${detail.ID}</h4>
+                        <h4>Manufacturer: ${detail.manufacturer}</h4>
+                        <h4>Category: ${detail.category}</h4>
+                        <h4>Available units stock: ${detail.stock}</h4>
 
-                    <h4>$1800.99</h4>
-
-                    <a href="cart.html" class="btn">
-                        <button id="cart">Go back</button>
-                    </a>
-                    <a href="cart.html" class="btn">
-                        <button id="cart">Add To Cart</button>
-                    </a>
+                        <h4>$${detail.price}</h4>
+                        <input type="hidden" name="txtProductID" value="${detail.ID}" />
+                        <a href="ShowProductServlet" class="btn">
+                            <button id="cart">Go back</button>
+                        </a>
+                        <a class="btn">
+                            <button type="submit" id="cart" name="action" value="order">
+                                Add To Cart
+                            </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-
-        <%-- EmptyList --%>
-    <center> <c:if test="${empty result}" >
-            <h3 id="Empty-List">No product available</h3>
-        </c:if></center>
-</body>
+    </body>
 </html>

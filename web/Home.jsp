@@ -29,6 +29,7 @@
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
               />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 
     </head>
 
@@ -91,7 +92,7 @@
                                                      aria-hidden="true"></i></button>
                         </form>
                     </li>
-                    <li><a href="viewCartServlet">
+                    <li><a href="viewCart.jsp">
                             <button id="cart">
                                 <i class="fa fa-shopping-basket"
                                    aria-hidden="true"></i>
@@ -99,7 +100,7 @@
                             </button>
                         </a>
                     </li>
-                    <li><a href="login.jsp">
+                    <li><a href="login.html">
                             <button id="cart">
                                 <i class="fas fa-user-circle" aria-hidden="true"></i>
                                 Login
@@ -121,7 +122,7 @@
                             <a href="#"><img
                                     src="https://cdn.tgdd.vn/2021/09/banner/830-300-830x300-6.png"
                                     alt=""></a>
-                            
+
                             <div class="slider-contain-left-top-btn">
                                 <i class="fas fa-chevron-left"></i>
                                 <i class="fas fa-chevron-right"></i>
@@ -164,78 +165,36 @@
 
         <%-- Content --%>
 
-    <center>
-
-
-        <c:if test="${not empty param.addStatus}">
-            <p id="Notice">
-                ${param.productAdded} is in your Cart now!!!
-            </p>
-        </c:if>
-
-        <c:set var="errors" value="${requestScope.QUANERR}"/>
-        <c:set var="updInfo" value="${requestScope.QUANTITY_INFO}"/>
-        <c:if test="${not empty errors.enterQuantityError}">
-            <p id="Notice">
-                [product:"${updInfo}"]: ${errors.enterQuantityError}
-            </p>
-        </c:if>
-
-        <c:set var="result" value="${requestScope.LOAD_FLOWER}"/>
+        <c:set var="result" value="${requestScope.LIST_PRODUCT}"/>
         <c:if test="${not empty result}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Category ID</th>
-                        <th>Cart</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="dto" items="${result}" varStatus="counter">
-                    <form action="AddFlowerServlet">
-                        <tr>
-                            <td class="number">
-                                ${counter.count}.
-                            </td>
-                            <td>
-                                ${dto.productID}             
-                            </td>
-                            <td>
-                                ${dto.productName}
-                                <input type="hidden" name="pName" value="${dto.productName}" />
-                            </td>
-                            <td class="number">                                
-                                <input type="text" name="pQuantity" value="1" style="border: none"
-                                       maxlength="4" size="1"/> 
-
-                            </td>
-                            <td class="number">
-                                ${dto.price}
-                            </td>
-                            <td>
-                                ${dto.catagoryID}
-                            </td>
-                            <td class="button">
-                                <input type="hidden" name="pID" value="${dto.productID}" />
-                                <input type="hidden" name="pQuantity" value="${dto.quantity}" />
-                                <input type="submit" value="Add" name="action" class="btn"/>
-                            </td>
-                        </tr>
-                    </form>
-                </c:forEach>
-                </tbody>
-            </table>
+            <div class="product-list">
+                <c:forEach var="dto" items="${result}" varStatus="counter">
+                    <div class="item">
+                        <form action="DispatchServlet">
+                            <p class="item-title"><b>${dto.proName}</b></p>
+                            <img src="${dto.imgLink}" width="100" height="300" alt="..."><br />
+                            <p class="item-body">${dto.description}</p>
+                            <p class="item-body">${dto.price} USD</p>
+                            <p class="item-body">${dto.stock} units in stock</p>
+                            <input type="hidden" name="txtProductID" value="${dto.ID}" />
+                            <button type="submit" class="detail" name="action" value="details">
+                                <i class="fas fa-exclamation"></i> 
+                                   Details
+                            </button>
+                            <button type="submit" class="order" name="action" value="order">
+                                <i class="fas fa-shopping-cart"></i> 
+                                Order Now
+                            </button>
+                        </form>
+                    </div>
+                </c:forEach>         
+            </div>
         </c:if>
         <c:if test="${empty result}" >
-            <h3 id="Empty-List">No product available</h3>
+            <center>
+                <h3 id="Empty-List">No product available</h3>
+            </center>
         </c:if>
-    </center>
 
-
-</body>
+    </body>
 </html>

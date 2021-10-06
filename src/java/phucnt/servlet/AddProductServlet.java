@@ -31,11 +31,11 @@ public class AddProductServlet extends HttpServlet {
     private final String PARAM_CONDITION = "condition";
     private final String PARAM_IMG = "imgLink";
 
-    private final String ATTR_USER = "USER_LOGIN";
+    private final String ATTR_USER = "LOGIN_USER";
     private final String ATTR_ERROR_ADD_PRODUCT = "ERROR_ADD_PRODUCT";
 
     private final String ERROR_NAME_LENGTH = "Product name must have between 2 and 50 characters.";
-    private final String ERROR_DESC_LENGTH = "Description must have between 2 and 50 characters.";
+    private final String ERROR_DESC_LENGTH = "Description must have between 2 and 250 characters.";
     private final String ERROR_PRICE_FORMAT = "Price must be in valid number format.";
     private final String ERROR_STOCK_FORMAT = "Units in stock must be in valid number format.";
     private final String ERROR_MANUFACT_LENGTH = "Manufacturer must have between 2 and 50 characters.";
@@ -69,7 +69,7 @@ public class AddProductServlet extends HttpServlet {
                 if (proName.trim().length() < 2 || proName.trim().length() > 50) {
                     errors.setProNameLengthErr(ERROR_NAME_LENGTH);
                 }
-                if (description.trim().length() < 2 || description.trim().length() > 50) {
+                if (description.trim().length() < 2 || description.trim().length() > 250) {
                     errors.setDescriptionLengthErr(ERROR_DESC_LENGTH);
                 }
                 if (manufacturer.trim().length() < 2 || manufacturer.trim().length() > 50) {

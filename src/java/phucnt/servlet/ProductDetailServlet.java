@@ -40,19 +40,20 @@ public class ProductDetailServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String url = DETAIL_PAGE;
         try {
-            int id = Integer.parseInt(request.getParameter("ID"));
+            int id = Integer.parseInt(request.getParameter("txtProductID"));
             ProductDAO dao = new ProductDAO();
             ProductDTO result =  dao.showByID(id);
             request.setAttribute("LOAD_DETAIL", result);
+            request.getRequestDispatcher(url).forward(request, response);
         } catch(SQLException e){
-            log("ShowFlowerServlet _ SQL: " + e.getMessage());
+            log("ProductDetailServlet _ SQL: " + e.getMessage());
             response.sendError(461);
         } catch(NamingException e){
-            log("ShowFlowerServlet _ Naming: " + e.getMessage());
+            log("ProductDetailServlet _ Naming: " + e.getMessage());
             response.sendError(461);
         }
         finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            
             out.close();
         }
     }

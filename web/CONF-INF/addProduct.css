@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 6, 2021, 8:23:14 PM
+    Author     : Administrator
+*/
+header {
+    background-color: rgba(236, 236, 236, 0.925);
+    padding: 0.05%;
+    font-size: x-large;
+    text-indent: 1.6%;
+}
+
+.btn-logout {
+    float: right;
+    position: absolute;  
+    right: 68px;  
+    top: 40px;
+    color: white;
+    background-color: red;
+    border: none;
+    height: 3%;
+    width: 3.5%;
+    border-radius: 5px;
+    text-decoration-line: none;
+}
+
+header p {
+    margin-top: -30px;
+    font-size: 20px;
+    padding-bottom: 17px;
+}
+
+.form-title {
+    position: relative;
+    left: 30px;
+    border-bottom: 1px solid silver;
+    font-size: 20px;
+}
+
+form {
+    margin-left: 95px;
+    margin-top: 30px;
+    width: 125px;
+}
+
+.form-control {
+    position: relative;
+    left: 200px;
+    top: -22px
+}
+
+.form-group-radio {
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.radio {
+    position: relative;
+    left: 100px;
+    padding-left: 30px;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.btn-add {
+    position: absolute;
+    left: 310px;
+    color: white;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 5px;
+    height: 3%;
+    font-size: 12px;
+}
+
+.btn-logout, .btn-add:hover {
+    cursor: pointer;
+}
+
+.add-form {
+    padding-right: 95px;
+}
+
+.error-control {
+    width: 200px
+}

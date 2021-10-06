@@ -152,7 +152,7 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Insert INTO tblProduct(productName, description, price, stock, manufacturer, category, condition, imgLink) "
+                String sql = "Insert INTO tblProduct(proName, description, price, stock, manufacturer, category, condition, imgLink) "
                         + "Values(?, ?, ?, ?, ?, ?, ?, ?) ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, proName);
@@ -266,7 +266,7 @@ public class ProductDAO implements Serializable {
     }
     
     
-    public List<ProductDTO> showFlower() throws SQLException, NamingException {
+    public List<ProductDTO> showMobile() throws SQLException, NamingException {
         //List<ProductDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -275,13 +275,13 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Select ID, proName, description, price, stock, manufacturer, category, condition,imgLink "
+                String sql = "Select proID, proName, description, price, stock, manufacturer, category, condition, imgLink "
                         + "From tblProduct ";
                 stm = con.prepareStatement(sql);
 
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                      int ID = rs.getInt("ID");
+                      int ID = rs.getInt("proID");
                       String proName = rs.getString("proName");
                       String description = rs.getString("description");
                       float price = rs.getFloat("price");
@@ -364,8 +364,9 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Select proName, description, price, stock, manufacturer, category, condition,imgLink  "
-                        + "From tblProducts "  + "WHERE ID = ?";
+                String sql = "Select proName, description, price, stock, manufacturer, category, condition, imgLink  "
+                        + "From tblProduct "  
+                        + "WHERE proID = ?";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, productID);
                 
