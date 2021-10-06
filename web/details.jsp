@@ -181,9 +181,7 @@
 
                         <h4>$${detail.price}</h4>
                         <input type="hidden" name="txtProductID" value="${detail.ID}" />
-                        <a href="ShowProductServlet" class="btn">
-                            <button id="cart">Go back</button>
-                        </a>
+                        <a href="ShowProductServlet" class="btn">Go back</a>
                         <a class="btn">
                             <button type="submit" id="cart" name="action" value="order">
                                 Add To Cart

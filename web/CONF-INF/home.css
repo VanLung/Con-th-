@@ -15,7 +15,7 @@ and open the template in the editor.
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Bradley Hand, cursive;
+    font-family: sans-serif;
 }
 
 header {

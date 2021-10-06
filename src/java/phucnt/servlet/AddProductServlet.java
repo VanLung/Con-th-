@@ -3,8 +3,6 @@ package phucnt.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,6 +61,7 @@ public class AddProductServlet extends HttpServlet {
             if ((session != null) && (session.getAttribute(ATTR_USER) != null)) {
                 float price = 0.0f;
                 int stock = 0;
+                int condition = 0;
 
                 boolean foundErr = false;
                 ProductCreateError errors = new ProductCreateError();
@@ -91,7 +90,9 @@ public class AddProductServlet extends HttpServlet {
                 } catch (NumberFormatException ex) {
                     errors.setStockFormatErr(ERROR_STOCK_FORMAT);
                 }
-                int condition = Integer.parseInt(txtCondition);
+                if (txtCondition != null) {
+                    condition = Integer.parseInt(txtCondition);
+                }
 
                 foundErr = (errors.toString().trim().length() > 0);
                 if (!foundErr) {
@@ -110,9 +111,11 @@ public class AddProductServlet extends HttpServlet {
             } // user not logged in
             request.getRequestDispatcher(url).forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            log("AddProductServlet _ SQL: " + ex.getMessage());
+            response.sendError(461);
         } catch (NamingException ex) {
-            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            log("AddProductServlet _ Naming: " + ex.getMessage());
+            response.sendError(461);
         } finally {
             out.close();
         }

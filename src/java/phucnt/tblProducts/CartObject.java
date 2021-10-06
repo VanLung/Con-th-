@@ -1,61 +1,73 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package phucnt.tblProducts;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-/**
- *
- * @author PC
- */
-public class CartObject implements Serializable{
-    //    Map<productID, quantity>
-    private Map<Integer, ProductDTO> items;
+public class CartObject implements Serializable {
 
-    public Map<Integer, ProductDTO> getItems() {
+    private Map<ProductDTO, Integer> items;
+    private float grandTotal;
+
+    public CartObject() {
+    }
+
+    public Map<ProductDTO, Integer> getItems() {
         return items;
     }
 
-    public void addPhone(ProductDTO product){
-        //int totalQuantity;
-        if(this.items == null){
-            items = new HashMap<>();
-        }
-            
-//        if(this.items.containsKey(product.getID())){
-//            this.items.get(product.getID()).setQuantity(product.getQuantity() + 1);
-//        }
-//        } else{
-//            totalQuantity = quantity;
-//        }
-//        
-        this.items.put(product.getID(), product);
-    }
-    
-    public void deletePhone(int productID){
-        if(this.items == null){
-            return;
-        }
-        
-        if(this.items.containsKey(productID)){
-            this.items.remove(productID);
-            if (this.items.isEmpty()) {
-                this.items = null;
+    public float getGrandTotal() {
+        grandTotal = 0;
+        Set<ProductDTO> products = items.keySet();
+        for (ProductDTO product : products) {
+            Integer quantity = items.get(product);
+            if (quantity != null) {
+                grandTotal += quantity * product.getPrice();
             }
         }
+        return grandTotal;
     }
-    
-//    public void updateFlower(String producID, int quantity){
-//        if(this.items == null){
-//            return;
-//        }
-//        if(this.items.containsKey(producID)){
-//            this.items.replace(producID, quantity);
-//        }
-//    }
+
+    public void addPhone(ProductDTO product) {
+        // 1. If cart is empty, initialize
+        if (this.items == null) {
+            items = new HashMap<ProductDTO, Integer>();
+        }
+
+        // 2. Check if product is already in cart, increase quantity (value)
+        boolean isExist = false;
+        Set<ProductDTO> products = this.items.keySet();
+        for (ProductDTO pro : products) {
+            if (pro.getID() == product.getID()) {
+                this.items.put(pro, this.items.get(pro) + 1);
+                isExist = true;
+            }
+        }
+
+        // 3. Product is not in cart, add to cart normally
+        if (!isExist) {
+            this.items.put(product, 1);
+        }
+    }
+
+    public void deletePhone(int productID) {
+        // 1. If cart is empty, do nothing
+        if (this.items == null) {
+            return;
+        }
+
+        // 2. If cart has product
+        Set<ProductDTO> products = this.items.keySet();
+        for (ProductDTO pro : products) {
+            if (pro.getID() == productID) {
+                this.items.remove(pro);
+            }
+        }
+
+        // 3. Check if cart is empty, remove cart
+        if (this.items.size() == 0) {
+            this.items = null;
+        }
+    }
 }

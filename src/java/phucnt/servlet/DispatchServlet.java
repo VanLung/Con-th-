@@ -22,10 +22,12 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGIN_CONTROLLER = "loginServlet";
     private final String DETAIL_CONTROLLER = "ProductDetailServlet";
     private final String LOGOUT_CONTROLLER = "logoutServlet";
-   
+
     private final String INSERT_CONTROLLER = "InsertProductServlet";
     private final String ADD_PRODUCT_CONTROLLER = "AddProductServlet";
-    private final String REMOVE_FLOWER_CONTROLLER = "RemoveFlowerServlet";
+
+    private final String CART_ADD_CONTROLLER = "AddToCartServlet";
+    private final String CART_REMOVE_CONTROLLER = "RemoveFromCartServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,17 +47,19 @@ public class DispatchServlet extends HttpServlet {
 
         try {
             if (action == null) {
-                
+
             } else if (action.equals("Login")) {
                 url = LOGIN_CONTROLLER;
             } else if (action.equals("Logout")) {
                 url = LOGOUT_CONTROLLER;
-            } else if (action.equals("Insert")){
+            } else if (action.equals("Insert")) {
                 url = INSERT_CONTROLLER;
-            } else if (action.equals("Add")){
+            } else if (action.equals("Add")) {
                 url = ADD_PRODUCT_CONTROLLER;
-            } else if (action.equals("Remove From Cart")){
-                url = REMOVE_FLOWER_CONTROLLER;
+            } else if (action.equals("order")) {
+                url = CART_ADD_CONTROLLER;
+            } else if (action.equals("Remove")) {
+                url = CART_REMOVE_CONTROLLER;
             } else if (action.equals("details")) {
                 url = DETAIL_CONTROLLER;
             }

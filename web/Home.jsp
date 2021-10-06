@@ -179,7 +179,7 @@
                             <input type="hidden" name="txtProductID" value="${dto.ID}" />
                             <button type="submit" class="detail" name="action" value="details">
                                 <i class="fas fa-exclamation"></i> 
-                                   Details
+                                Details
                             </button>
                             <button type="submit" class="order" name="action" value="order">
                                 <i class="fas fa-shopping-cart"></i> 
@@ -191,10 +191,10 @@
             </div>
         </c:if>
         <c:if test="${empty result}" >
-            <center>
-                <h3 id="Empty-List">No product available</h3>
-            </center>
-        </c:if>
+        <center>
+            <h3 id="Empty-List">No product available</h3>
+        </center>
+    </c:if>
 
-    </body>
+</body>
 </html>

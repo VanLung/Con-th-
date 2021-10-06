@@ -42,6 +42,10 @@
                     Login
                 </button>
             </form>
+            </br>
+            <center>
+                <a href="ShowProductServlet">Back to store.</a>
+            </center>
         </div>
     </body>
 </html>

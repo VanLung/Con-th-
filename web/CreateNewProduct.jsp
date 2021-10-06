@@ -1,12 +1,5 @@
-<%-- 
-    Document   : CreateNewProduct
-    Created on : Apr 18, 2021, 9:12:08 PM
-    Author     : PC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,20 +54,18 @@
 
                 <c:if test="${not empty errors.stockFormatErr}">
                     <font color="red">
-                        ${errors.stockFormatErr}
+                    ${errors.stockFormatErr}
                     </font>
                 </c:if>
 
                 <div class="form-group">
                     <label class="description"> Description</label>
-                    <textarea class="form-control" value="" name="description">
-
-                    </textarea>
+                    <textarea class="form-control" value="" name="description"></textarea>
                 </div>
 
                 <c:if test="${not empty errors.descriptionLengthErr}">
                     <font color="red">
-                        ${errors.descriptionLengthErr}
+                    ${errors.descriptionLengthErr}
                     </font>
                 </c:if>
 
@@ -85,7 +76,7 @@
 
                 <c:if test="${not empty errors.manufacturerLengthErr}">
                     <font color="red">
-                        ${errors.manufacturerLengthErr}
+                    ${errors.manufacturerLengthErr}
                     </font>
                 </c:if>
 
@@ -96,7 +87,7 @@
 
                 <c:if test="${not empty errors.categoryLengthErr}">
                     <font color="red" class="error-control">
-                        ${errors.categoryLengthErr}
+                    ${errors.categoryLengthErr}
                     </font>
                 </c:if>
 
@@ -105,7 +96,7 @@
 
                     <label class="radio">
                         New 
-                        <input type="radio" class="form-control-radio" value="1" name="condition"> 
+                        <input type="radio" class="form-control-radio" value="1" name="condition" checked> 
                     </label>
 
                     <label class="radio">
@@ -125,7 +116,7 @@
 
                 <c:if test="${not empty errors.imgLengthErr}">
                     <font color="red">
-                        ${errors.imgLengthErr}
+                    ${errors.imgLengthErr}
                     </font>
                 </c:if>
 
