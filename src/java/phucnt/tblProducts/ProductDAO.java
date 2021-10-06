@@ -354,4 +354,51 @@ public class ProductDAO implements Serializable {
 
         return false;
     }
+    
+    //Add function: Nguyen Tien Dung SE150614
+    public ProductDTO showByID(int productID)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ProductDTO dto = null;
+        try {
+            con = DBIHelper.getConnection();
+            if (con != null) {
+                String sql = "Select proName, description, price, stock, manufacturer, category, condition,imgLink  "
+                        + "From tblProducts "  + "WHERE ID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, productID);
+                
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String productName = rs.getString("proName");
+                    String description = rs.getString("description");
+                    int price = rs.getInt("price");
+                    int stock = rs.getInt("stock");
+                    String manufacturer = rs.getString("manufacturer");
+                    String category = rs.getString("category");
+                    int condition = rs.getInt("condition");
+                    String img = rs.getString("imgLink");
+
+                    dto = new ProductDTO(productID, productName, description, price, stock, manufacturer,category, condition, img);
+                    //this.productList.add(dto);
+                }
+                return dto;
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return null;
+    }
 }
