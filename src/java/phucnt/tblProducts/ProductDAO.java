@@ -31,22 +31,26 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Select productID, productName, quantity, price, catagoryID "
-                        + "From tblProducts "
-                        + "Where productName like ? ";
+                String sql = "Select ID, proName, description, price, stock, manufacturer, category, condition,imgLink "
+                        + "From tblProduct "
+                        + "Where proName like ? ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
 
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    String productID = rs.getString("productID");
-                    String productName = rs.getString("productName");
-                    int quantity = rs.getInt("quantity");
-                    int price = rs.getInt("price");
-                    String catagoryID = rs.getString("catagoryID");
-
-                    ProductDTO dto = new ProductDTO(productID, productName, quantity, price, catagoryID);
-                    list.add(dto);
+                      int ID = rs.getInt("ID");
+                      String proName = rs.getString("proName");
+                      String description = rs.getString("description");
+                      float price = rs.getFloat("price");
+                      int stock = rs.getInt("stock");
+                      String manufacturer = rs.getString("manufacturer");
+                      String category = rs.getString("category");
+                      int condition = rs.getInt("condition");
+                      String imgLink = rs.getString("imgLink");
+                      
+                      ProductDTO dto = new ProductDTO(ID, proName, description, price, stock, manufacturer, category, condition, imgLink);
+                      list.add(dto);                              
                 }
             }
 
@@ -65,7 +69,7 @@ public class ProductDAO implements Serializable {
         return list;
     }
 
-    public boolean deleteProduct(String productID)
+    public boolean deleteProduct(int ID)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -73,10 +77,10 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Delete FROM tblProducts "
-                        + "Where productID = ? ";
+                String sql = "Delete FROM tblProduct "
+                        + "Where ID = ? ";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, productID);
+                stm.setInt(1, ID);
 
                 int row = stm.executeUpdate();
                 if (row > 0) {
@@ -95,7 +99,7 @@ public class ProductDAO implements Serializable {
         return false;
     }
 
-    public boolean UpdateProduct(String productID, int quantity, int price, String catagoryID)
+    public boolean UpdateProduct(int ID, String description , float price, int stock, String manufacturer, String category, int condition, String imgLink)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -103,18 +107,25 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "UPDATE tblProducts "
-                        + "SET quantity = ?, "
+                String sql = "UPDATE tblProduct "
+                        + "SET description = ?, "
                         + "price = ?, "
-                        + "catagoryID = ? "
-                        + "WHERE productID = ? ";
-
+                        + "stock = ?, "
+                        + "manufacturer = ?, "
+                        + "category = ?, "
+                        + "condition = ?, "
+                        + "imgLink = ? "                       
+                        + "WHERE ID = ? ";
                 stm = con.prepareStatement(sql);
-                stm.setInt(1, quantity);
-                stm.setInt(2, price);
-                stm.setString(3, catagoryID);
-                stm.setString(4, productID);
-
+                stm.setString(1, description);
+                stm.setFloat(2, price);
+                stm.setInt(3, stock);
+                stm.setString(4, manufacturer);
+                stm.setString(5, category);
+                stm.setInt(6, condition);
+                stm.setString(7, imgLink);
+                stm.setInt(8, ID);
+            
                 int row = stm.executeUpdate();
                 if (row > 0) {
                     return true;
@@ -133,7 +144,7 @@ public class ProductDAO implements Serializable {
         return false;
     }
 
-    public boolean InsertProduct(String productID, String productName, int quantity, int price, String categoryID)
+    public boolean InsertProduct(int ID, String proName, String description , float price, int stock, String manufacturer, String category, int condition, String imgLink)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -141,14 +152,18 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Insert INTO tblProducts(productID, productName, quantity, price, catagoryID) "
-                        + "Values(?, ?, ?, ?, ?) ";
+                String sql = "Insert INTO tblProduct(ID, productName, description, price, stock, manufacturer, category, condition, imgLink) "
+                        + "Values(?, ?, ?, ?, ?, ?, ?, ?, ?) ";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, productID);
-                stm.setString(2, productName);
-                stm.setInt(3, quantity);
-                stm.setInt(4, price);
-                stm.setString(5, categoryID);
+                stm.setInt(1, ID);
+                stm.setString(2, proName);
+                stm.setString(3, description);
+                stm.setFloat(4, price);
+                stm.setInt(5, stock);
+                stm.setString(6, manufacturer);
+                stm.setString(7, category);
+                stm.setInt(8, condition);
+                stm.setString(9, imgLink);              
 
                 int row = stm.executeUpdate();
                 if (row > 0) {
@@ -168,8 +183,8 @@ public class ProductDAO implements Serializable {
     }
 
     private List<ProductDTO> productList;
-
-    public ProductDTO getProductInfo(String productID, int quantity) throws SQLException, NamingException {
+ 
+    public ProductDTO getProductInfo(int ID, String proName,  String description, String manufacturer, String category, int stock, String imgLink) throws SQLException, NamingException {
        
         Connection con = null;
         PreparedStatement stm = null;
@@ -178,20 +193,25 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "SELECT productName, price, catagoryID "
-                        + "FROM tblProducts "
-                        + "WHERE productID = ?";
+                String sql = "SELECT proName, description, manufacturer, category, stock, price "
+                        + "FROM tblProduct "
+                        + "WHERE ID = ?";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, productID);
+                stm.setInt(1, ID);
 
                 rs = stm.executeQuery();
                 if(rs.next()) {
-                    String productName = rs.getString("productName");
-                    int price = rs.getInt("price");
-                    String catagoryID = rs.getString("catagoryID");
-                    ProductDTO dto = new ProductDTO(productID, productName, 
-                            quantity, price, catagoryID);
-                    return dto;
+                    proName = rs.getString("proName");
+                    description = rs.getString("description");
+                    manufacturer  = rs.getString("manufacturer");
+                    category = rs.getString("category");
+                    stock = rs.getInt("stock");
+                    imgLink = rs.getString("imgLink");
+                    float price = rs.getFloat("price");
+                    int condition = rs.getInt("condition");
+                    
+                    ProductDTO dto =  new ProductDTO(ID, proName, description, price, stock, manufacturer, category, condition, imgLink);
+                    return dto;         
                 }
             }
 
@@ -209,7 +229,7 @@ public class ProductDAO implements Serializable {
         return null;
     }
     
-    public int getProductRemaining(String productID)
+    public int getProductRemaining(int ID)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -218,15 +238,15 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "SELECT quantity "
-                        + "FROM tblProducts "
-                        + "WHERE productID = ?";
+                String sql = "SELECT stock "
+                        + "FROM tblProduct "
+                        + "WHERE ID = ?";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, productID);
+                stm.setInt(1, ID);
 
                 rs = stm.executeQuery();
                 if(rs.next()) {
-                    int remaining = rs.getInt("quantity");
+                    int remaining = rs.getInt("stock");
                     return remaining;
                 }
             }
@@ -256,23 +276,26 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Select productID, productName, quantity, price, catagoryID "
-                        + "From tblProducts ";
+                String sql = "Select ID, proName, description, price, stock, manufacturer, category, condition,imgLink "
+                        + "From tblProduct ";
                 stm = con.prepareStatement(sql);
 
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    String productID = rs.getString("productID");
-                    String productName = rs.getString("productName");
-                    int quantity = rs.getInt("quantity");
-                    int price = rs.getInt("price");
-                    String cateogoryID = rs.getString("catagoryID");
-
-                    ProductDTO dto = new ProductDTO(productID, productName, quantity, price, cateogoryID);
-                    if (this.productList == null) {
-                        this.productList = new ArrayList<>();
-                    }
-                    this.productList.add(dto);
+                      int ID = rs.getInt("ID");
+                      String proName = rs.getString("proName");
+                      String description = rs.getString("description");
+                      float price = rs.getFloat("price");
+                      int stock = rs.getInt("stock");
+                      String manufacturer = rs.getString("manufacturer");
+                      String category = rs.getString("category");
+                      int condition = rs.getInt("condition");
+                      String imgLink = rs.getString("imgLink");
+                      ProductDTO dto = new ProductDTO(ID, proName, description, price, stock, manufacturer, category, condition, imgLink);
+                      if (this.productList == null){
+                          this.productList = new ArrayList<>();
+                      }
+                      this.productList.add(dto);  
                 }
                 return productList;
             }
@@ -292,7 +315,7 @@ public class ProductDAO implements Serializable {
         return null;
     }
     
-    public boolean IsProductNametaken(String productName) throws SQLException, NamingException {
+    public boolean IsProductNametaken(String proName) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -302,13 +325,13 @@ public class ProductDAO implements Serializable {
             con = DBIHelper.getConnection();
             if (con != null) {
                 //2. create sql string
-                String sql = "Select productName "
-                        + "From tblProducts "
-                        + "Where productName like ?";
+                String sql = "Select proName "
+                        + "From tblProduct "
+                        + "Where proName like ?";
 
                 //3. create stm
                 stm = con.prepareStatement(sql);
-                stm.setString(1, productName);
+                stm.setString(1, proName);
                 //4. execute stm and get rs
                 rs = stm.executeQuery();
 

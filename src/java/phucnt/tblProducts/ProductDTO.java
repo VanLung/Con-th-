@@ -12,61 +12,101 @@ import java.io.Serializable;
  * @author PC
  */
 public class ProductDTO implements Serializable{
-    private String productID;
-    private String productName;
-    private int quantity;
-    private int price;
-    private String catagoryID;
+   private int ID;
+    private String proName;
+    private String description;
+    private float price;
+    private int stock;
+    private String manufacturer;
+    private String category;
+    private int condition;
+    private String imgLink;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(String productID, String productName, int quantity, int price, String catagoryID) {
-        this.productID = productID;
-        this.productName = productName;
-        this.quantity = quantity;
+    public ProductDTO(int ID, String proName, String description, float price, int stock, String manufacturer, String category, int condition, String imgLink) {
+        this.ID = ID;
+        this.proName = proName;
+        this.description = description;
         this.price = price;
-        this.catagoryID = catagoryID;
+        this.stock = stock;
+        this.manufacturer = manufacturer;
+        this.category = category;
+        this.condition = condition;
+        this.imgLink = imgLink;
     }
 
-    public String getProductID() {
-        return productID;
+    public int getID() {
+        return ID;
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProName() {
+        return proName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProName(String proName) {
+        this.proName = proName;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getDescription() {
+        return description;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
-    public String getCatagoryID() {
-        return catagoryID;
+    public int getStock() {
+        return stock;
     }
 
-    public void setCatagoryID(String catagoryID) {
-        this.catagoryID = catagoryID;
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public void setCondition(int condition) {
+        this.condition = condition;
+    }
+
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
     }
     
     

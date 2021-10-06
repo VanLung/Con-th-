@@ -64,12 +64,7 @@ public class loginServlet extends HttpServlet {
         } catch (SQLException e) {
             log("SQLExecption _ loginServlet: " + e.getMessage());
             response.sendError(461);
-        } catch (NamingException e) {
-            log("NamingExecption _ loginServlet: " + e.getMessage());
-            response.sendError(461);
-        } finally {
-
-            
+        } finally {      
             out.close();
         }
     }

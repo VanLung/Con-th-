@@ -27,14 +27,14 @@ public class CartObject implements Serializable{
             items = new HashMap<>();
         }
             
-        if(this.items.containsKey(product.getProductID())){
-            this.items.get(product.getProductID()).setQuantity(product.getQuantity() + 1);
-        }
+//        if(this.items.containsKey(product.getID())){
+//            this.items.get(product.getID()).setQuantity(product.getQuantity() + 1);
+//        }
 //        } else{
 //            totalQuantity = quantity;
 //        }
 //        
-        this.items.put(product.getProductID(), product);
+        this.items.put(product.getID(), product);
     }
     
     public void deletePhone(int productID){
