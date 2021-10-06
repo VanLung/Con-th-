@@ -28,7 +28,7 @@ import phucnt.tblUsers.UserDTO;
 public class loginServlet extends HttpServlet {
 
     private final String INVALID_PAGE = "login.jsp";
-    private final String SEARCH_PAGE = "search.jsp";
+    private final String HOME_PAGE = "Home.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,20 +47,14 @@ public class loginServlet extends HttpServlet {
         String url = INVALID_PAGE;
         String userID = request.getParameter("txtUserID");
         String password = request.getParameter("txtPassword");
-        String remember = request.getParameter("chkCookie");
         try {
             UserDAO dao = new UserDAO();
             UserDTO result = dao.checkLogin(userID, password);
             LoginError errors = new LoginError();
-            if (result != null) {
-                if (remember != null) {
-                    Cookie cookie = new Cookie(userID, password);
-                    cookie.setMaxAge(60 * 3);
-                    response.addCookie(cookie);
-                }
+            if (result != null) {             
                 HttpSession session = request.getSession();
                 session.setAttribute("LOGIN_USER", result);
-                url = SEARCH_PAGE;
+                url = HOME_PAGE;
                 response.sendRedirect(url);
             } else {
                 errors.setLoginInfoNotMatch("Invalid userID or password");

@@ -53,28 +53,15 @@ public class DispatchServlet extends HttpServlet {
                 url = STARTUP_CONTROLLER;
             } else if (action.equals("Login")) {
                 url = LOGIN_CONTROLLER;
-            } else if (action.equals("Create New Account")) {
-                url = CREATE_ACCOUNT_CONTROLLER;
             } else if (action.equals("Logout")) {
                 url = LOGOUT_CONTROLLER;
-            } else if (action.equals("Search")) {
-                url = SEARCH_CONTROLLER;
-            } else if (action.equals("Delete")) {
-                url = DELETE_CONTROLLER;
-            } else if (action.equals("Update")){
-                url = UPDATE_CONTROLLER;
             } else if (action.equals("Insert")){
                 url = INSERT_CONTROLLER;
             } else if (action.equals("Add")){
                 url = ADD_FLOWER_CONTROLLER;
-            } else if (action.equals("Edit View Cart")){
-                url = EDIT_FLOWER_CONTROLLER;
             } else if (action.equals("Remove From Cart")){
                 url = REMOVE_FLOWER_CONTROLLER;
-            } else if (action.equals("Check Out")){
-                url = CHECKOUT_CONTROLLER;
-            }
-
+            } 
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
             out.close();

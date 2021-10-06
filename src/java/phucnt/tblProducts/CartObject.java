@@ -15,43 +15,47 @@ import java.util.Map;
  */
 public class CartObject implements Serializable{
     //    Map<productID, quantity>
-    private Map<String, Integer> items;
+    private Map<Integer, ProductDTO> items;
 
-    public Map<String, Integer> getItems() {
+    public Map<Integer, ProductDTO> getItems() {
         return items;
     }
 
-    public void addFlower(String productID, int quantity){
-        int totalQuantity;
+    public void addPhone(ProductDTO product){
+        //int totalQuantity;
         if(this.items == null){
             items = new HashMap<>();
         }
             
-        if(this.items.containsKey(productID)){
-            totalQuantity = this.items.get(productID) + quantity;
-        } else{
-            totalQuantity = quantity;
+        if(this.items.containsKey(product.getProductID())){
+            this.items.get(product.getProductID()).setQuantity(product.getQuantity() + 1);
         }
-        
-        this.items.put(productID, totalQuantity);
+//        } else{
+//            totalQuantity = quantity;
+//        }
+//        
+        this.items.put(product.getProductID(), product);
     }
     
-    public void deleteFlower(String productID){
+    public void deletePhone(int productID){
         if(this.items == null){
             return;
         }
         
         if(this.items.containsKey(productID)){
             this.items.remove(productID);
+            if (this.items.isEmpty()) {
+                this.items = null;
+            }
         }
     }
     
-    public void updateFlower(String producID, int quantity){
-        if(this.items == null){
-            return;
-        }
-        if(this.items.containsKey(producID)){
-            this.items.replace(producID, quantity);
-        }
-    }
+//    public void updateFlower(String producID, int quantity){
+//        if(this.items == null){
+//            return;
+//        }
+//        if(this.items.containsKey(producID)){
+//            this.items.replace(producID, quantity);
+//        }
+//    }
 }

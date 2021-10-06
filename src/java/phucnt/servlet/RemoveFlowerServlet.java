@@ -50,13 +50,11 @@ public class RemoveFlowerServlet extends HttpServlet {
                 CartObject cart = (CartObject) session.getAttribute("CART");
                 if (cart != null) {
                     //3. Customer get items in cart.
-                    Map<String, Integer> items = cart.getItems();
-                    if (items != null) {
-                        cart.deleteFlower(productID);
-                        session.setAttribute("CART", cart);
+                    cart.deletePhone(Integer.parseInt(productID));
+                    session.setAttribute("CART", cart);
                     }//end if cart is not empty.
                 }//end if cart is existed.
-            }//end if session has existed.
+                //end if session has existed.
             //6. Re-call View Cart function.
         } finally {
             response.sendRedirect(url);
