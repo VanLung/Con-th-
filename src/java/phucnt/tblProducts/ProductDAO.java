@@ -144,7 +144,7 @@ public class ProductDAO implements Serializable {
         return false;
     }
 
-    public boolean InsertProduct(int ID, String proName, String description , float price, int stock, String manufacturer, String category, int condition, String imgLink)
+    public boolean InsertProduct(String proName, String description , float price, int stock, String manufacturer, String category, int condition, String imgLink)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -152,18 +152,17 @@ public class ProductDAO implements Serializable {
         try {
             con = DBIHelper.getConnection();
             if (con != null) {
-                String sql = "Insert INTO tblProduct(ID, productName, description, price, stock, manufacturer, category, condition, imgLink) "
-                        + "Values(?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                String sql = "Insert INTO tblProduct(productName, description, price, stock, manufacturer, category, condition, imgLink) "
+                        + "Values(?, ?, ?, ?, ?, ?, ?, ?) ";
                 stm = con.prepareStatement(sql);
-                stm.setInt(1, ID);
-                stm.setString(2, proName);
-                stm.setString(3, description);
-                stm.setFloat(4, price);
-                stm.setInt(5, stock);
-                stm.setString(6, manufacturer);
-                stm.setString(7, category);
-                stm.setInt(8, condition);
-                stm.setString(9, imgLink);              
+                stm.setString(1, proName);
+                stm.setString(2, description);
+                stm.setFloat(3, price);
+                stm.setInt(4, stock);
+                stm.setString(5, manufacturer);
+                stm.setString(6, category);
+                stm.setInt(7, condition);
+                stm.setString(8, imgLink);              
 
                 int row = stm.executeUpdate();
                 if (row > 0) {
