@@ -226,7 +226,7 @@ nav ul li:nth-child(5):hover i {
 }
 
 #cart:hover {
-    border-color: #fff;
+    border-color: #000;
 }
 
 /*Slider*/
@@ -351,3 +351,29 @@ body {
 #Empty-List{
     margin-top: 30px;
 }   
+/*Details Product Page*/
+/* Product */
+.row{
+    display: flex;
+}
+.row .col-1{
+    width: 60%;
+}
+.row .col-2{
+    width: 40%;
+}
+.col-1 img{
+    width: 500px;
+    height:400px;
+    margin-top: 30px;
+    margin-left: 160px;
+}
+.col-2 h2, h4{
+    margin-right: 105px;
+    margin-top: 30px;
+    font-weight: normal;
+     
+}
+.col-2 h4{
+    font-size: 14px;
+}
