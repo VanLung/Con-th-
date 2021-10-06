@@ -10,13 +10,13 @@ Packages:
 
 DB: tạo DB (2 table tblUser) Vũ
 	
-Back end: ( deadline,tối mai t4 5/10)
+Back end: ( deadline,tối mai t4 6/10)
 -sửa connect DB
 -DAO,DTO -Hoàng,Vũ,
 -Xóa CreateAccount,Starup,Checkout,Search,UpdateServlet. :Nguyên,Phúc
 -Tạo thêm productDetails  :Dũng
 
-Front end: Lưng,Khang (t5 6/10)
+Front end: Lưng,Khang (t5 7/10)
 -Thêm trang details
 -Xóa search.jsp
 -Xóa createAccount.jsp,createAccount.html
