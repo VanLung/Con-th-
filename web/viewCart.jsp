@@ -18,7 +18,7 @@
             crossorigin="anonymous">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="CONF-INF/home.css" />
+        <link rel="stylesheet" href="CONF-INF/cart.css" />
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"
@@ -123,13 +123,15 @@
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </div>
-                        <div class="slider-contain-left-bottom">
-                            <li class="active">Góp Triệu Yêu Thương Trao 2000 Tấn Gạo</li>
-                            <li>Galaxy S21 Series 5G Giảm Đến 9 Triệu</li>
-                            <li>Đặt trước Vivo X7 Pro Tặng Ngay 3 Triệu</li>
-                            <li>Reno6Z | Reno6Z 5G Giá Từ 9.490.000đ</li>
-                            <li>Sắm Phụ Kiện Giảm Tối Đa Đến 50%</li>
-                        </div>
+                        <form action="DispatchServlet">
+                            <div class="slider-contain-left-bottom">
+                                <li class="active">Góp Triệu Yêu Thương Trao 2000 Tấn Gạo</li>
+                                <li>Galaxy S21 Series 5G Giảm Đến 9 Triệu</li>
+                                <li>Đặt trước Vivo X7 Pro Tặng Ngay 3 Triệu</li>
+                                <li>Reno6Z | Reno6Z 5G Giá Từ 9.490.000đ</li>
+                                <li>Sắm Phụ Kiện Giảm Tối Đa Đến 50%</li>
+                            </div>
+                        </form>
                     </div>
                     <div class="slider-contain-right">
                         <li>
@@ -164,17 +166,15 @@
         </div>
 
         <div class="small-container cart-page">
-
             <c:set var="cart" value="${sessionScope.CART}"/>
             <c:if test="${not empty cart}">
                 <c:set var="items" value="${cart.items}"/>
                 <c:if test="${not empty items}">
-                    <a href="ClearCartServlet">
-                        <button class="btn btn-clear mg1 " type="back">
-                            <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
-                        </button>
-                    </a>
-
+                    <!--                    <a href="ClearCartServlet">
+                                            <button class="btn btn-clear mg1 " type="back">
+                                                <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
+                                            </button>
+                                        </a>-->
                     <table>
                         <tr>
                             <th>Product</th>
@@ -182,26 +182,23 @@
                             <th>Subtotal</th>
                         </tr>
                         <c:forEach items="${items}" var="entry">
-                            <form action="DispatchServlet" method="POST">
-                                <tr>
-                                    <td>
-                                        <div class="cart-info">
-                                            <img src="${entry.key.imgLink}" alt="">
-                                            <div>
-                                                <p>            
-                                                    ${entry.key.proName}
-                                                    <input type="hidden" name="txtProductID" value="${entry.key.ID}" />
-                                                </p>
+                            <tr>
+                                <td>
+                                    <div class="cart-info">
+                                        <img src="${entry.key.imgLink}" alt="">
+                                        <div>
+                                            <form action="DispatchServlet" method="POST">
+                                                ${entry.key.proName} </br>
+                                                <input type="hidden" name="txtProductID" value="${entry.key.ID}" />
                                                 <small>Price: ${entry.key.price} USD</small>
-                                                <br>
                                                 <input type="submit" value="Remove" name="action" class="btn btn-remove-cart" />
-                                            </div>
+                                            </form>
                                         </div>
-                                    </td>
-                                    <td>${entry.value}</td>
-                                    <td>${entry.key.price * entry.value} USD</td>
-                                </tr>
-                            </form>
+                                    </div>
+                                </td>
+                                <td>${entry.value}</td>
+                                <td>${entry.key.price * entry.value} USD</td>
+                            </tr>
                         </c:forEach>
                     </table>
                     <div class="total-price">
@@ -226,7 +223,7 @@
                         </button></a>
                     </c:if>
                 </c:if>
-            <a href="">
+            <a href="ShowProductServlet">
                 <button class="btn btn-continue " type="back">
                     <i class="fa fa-arrow-left" aria-hidden="true" ></i> continue shopping
                 </button>

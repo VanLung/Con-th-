@@ -66,6 +66,7 @@ public class CartObject implements Serializable {
         for (ProductDTO pro : products) {
             if (pro.getID() == productID) {
                 this.items.remove(pro);
+                break;
             }
         }
 
