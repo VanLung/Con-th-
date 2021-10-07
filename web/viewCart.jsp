@@ -1,99 +1,6 @@
-<%-- 
-    Document   : viewCart
-    Created on : Apr 20, 2021, 5:08:53 PM
-    Author     : PC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" rel="stylesheet" href="CONF-INF/general.css">
-        <title>Your Cart - Mobile Store</title>
-        <style>
-            @media all and (max-width: 1080px){
-                #result {
-                    margin: 10px 0 0 0;
-                    width: 100%;
-                }
-            }
-            a {
-                text-decoration: none;
-                color: blue;
-            }
-        </style>
-    </head>
-    <body>
-    <center>
-        <a href="ShowProductServlet">Click here to go back to home page</a>
-
-        <c:set var="cart" value="${sessionScope.CART}"/>
-        <c:if test="${not empty cart}">
-            <c:set var="items" value="${cart.items}"/>
-            <c:if test="${not empty items}">
-                <h2>Your items:</h2>
-                <p></p>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="entry" items="${items}" varStatus="counter">
-                        <form action="DispatchServlet">
-                            <center>
-                                <tr>
-                                    <td>
-                                        ${counter.count}.
-                                    </td>
-                                    <td>
-                                        ${entry.key.proName}
-                                        <input type="hidden" name="txtProductID" value="${entry.key.ID}" />
-                                    </td>
-                                    <td>                                
-                                        ${entry.value}
-                                    </td>
-                                    <td>
-                                        ${entry.key.price} USD
-                                    </td>
-                                    <td>
-                                        ${entry.key.price * entry.value} USD
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Remove" name="action" class="btn"/>
-                                    </td>
-                                </tr>
-                            </center>
-                        </form>
-                    </c:forEach>
-                    <tr>
-                        <td colspan="4">Grand Total</td>
-                        <td colspan="2">${cart.grandTotal} USD</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <form action="DispatchServlet">
-                    <input type="submit" value="Check Out" name="action" class="btn"/>
-                </form>
-            </c:if>
-        </c:if>
-        <br/>
-        <c:if test="${empty items}">
-            <h3>No products have been added to cart.</h3>
-        </c:if>
-
-    </center>
-        <%--  ViewCart.html
-        <!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -111,12 +18,12 @@
             crossorigin="anonymous">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="home.css" />
+        <link rel="stylesheet" href="CONF-INF/home.css" />
         <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            />
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+              />
         <!-- <link rel="stylesheet" href="reponsive.css" /> -->
 
         <!-- Logo in title -->
@@ -141,7 +48,7 @@
             <nav class="menu-bar-content">
                 <ul>
                     <li><a href="#">Điện thoại<i class="fa fa-sort-down"
-                                style="font-size:16px;margin-left: 5px;"></i></a>
+                                                 style="font-size:16px;margin-left: 5px;"></i></a>
                         <div class="menu-dienthoai">
                             <ul>
                                 <li><a href="#">IPHONE</a></li>
@@ -162,7 +69,7 @@
                         </div>
                     </li>
                     <li><a href="#">Phụ kiện<i class="fa fa-sort-down"
-                                style="font-size:16px;margin-left: 5px;"></i></a>
+                                               style="font-size:16px;margin-left: 5px;"></i></a>
                         <div class="menu-phukien">
                             <ul>
                                 <li><a href="#">Pin sạc dự phòng</a></li>
@@ -183,14 +90,14 @@
                         <form>
                             <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." />
                             <button type="submit"><i class="fa fa-search"
-                                    aria-hidden="true"></i></button>
+                                                     aria-hidden="true"></i></button>
                         </form>
                     </li>
-                    <li><a href="cart.html">
+                    <li><a href="viewCart.jsp">
                             <button id="cart">
                                 <i class="fa fa-shopping-basket"
-                                    aria-hidden="true"></i>
-                                Giỏ Hàng
+                                   aria-hidden="true"></i>
+                                Cart
                             </button>
                         </a></li>
 
@@ -207,10 +114,10 @@
                             <a href="#"><img
                                     src="https://cdn.tgdd.vn/2021/09/banner/830-300-830x300-6.png"
                                     alt=""></a>
-                            <!-- <a href="#"><img src="https://cdn.tgdd.vn/2021/10/banner/S21-830-300-830x300-1.png" alt=""></a>
-                        <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/830-300-830x300-13.png" alt=""></a>
-                        <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/reno6cb-830-300-830x300.png" alt=""></a>
-                        <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/pk-t10-830-300-830x300.png" alt=""></a> -->
+                            <!--                             <a href="#"><img src="https://cdn.tgdd.vn/2021/10/banner/S21-830-300-830x300-1.png" alt=""></a>
+                                                    <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/830-300-830x300-13.png" alt=""></a>
+                                                    <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/reno6cb-830-300-830x300.png" alt=""></a>
+                                                    <a href="#"><img src="https://cdn.tgdd.vn/2021/09/banner/pk-t10-830-300-830x300.png" alt=""></a> -->
                             <div class="slider-contain-left-top-btn">
                                 <i class="fas fa-chevron-left"></i>
                                 <i class="fas fa-chevron-right"></i>
@@ -253,106 +160,77 @@
 
         <div class="panner2">
             <img src="https://cdn.tgdd.vn/2021/10/banner/1200-60-1200x60.png"
-                alt="">
+                 alt="">
         </div>
 
- <div class="small-container cart-page">
-    
-        <a href=""><button class="btn btn-clear mg1 " type="back">
-        <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
-      </button></a>
-    
-<table>
-    
-    
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-    </tr>
-    <tr>
-        <td>
-            <div class="cart-info">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/226935/samsung-galaxy-z-fold-3-silver-1-600x600.jpg" alt="">
-            <div>
-                <p>Samsung Galaxy Z Fold3 5G 256GB</p>
-                <small>Price: 49.490.000₫</small>
-                <br>
-                <a href="">Xóa</a>
-            </div>
-            </div>
+        <div class="small-container cart-page">
 
+            <c:set var="cart" value="${sessionScope.CART}"/>
+            <c:if test="${not empty cart}">
+                <c:set var="items" value="${cart.items}"/>
+                <c:if test="${not empty items}">
+                    <a href="ClearCartServlet">
+                        <button class="btn btn-clear mg1 " type="back">
+                            <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
+                        </button>
+                    </a>
 
-        </td>
-        <td><input type="number" value="1"></td>
-        <td>49.490.000₫</td>
-    </tr>
-    <tr>
-        <td>
-            <div class="cart-info">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-den-new-2-600x600.jpg" alt="">
-            <div>
-                <p>IPhone 12 128GB</p>
-                <small>Price: 24.490.000₫</small>
-                <br>
-                <a href="">Xóa</a>
-            </div>
-            </div>
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        <c:forEach items="${items}" var="entry">
+                            <form action="DispatchServlet" method="POST">
+                                <tr>
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="${entry.key.imgLink}" alt="">
+                                            <div>
+                                                <p>            
+                                                    ${entry.key.proName}
+                                                    <input type="hidden" name="txtProductID" value="${entry.key.ID}" />
+                                                </p>
+                                                <small>Price: ${entry.key.price} USD</small>
+                                                <br>
+                                                <input type="submit" value="Remove" name="action" class="btn btn-remove-cart" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>${entry.value}</td>
+                                    <td>${entry.key.price * entry.value} USD</td>
+                                </tr>
+                            </form>
+                        </c:forEach>
+                    </table>
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>${cart.grandTotal} USD</td>
+                            </tr>
+                            <tr>
+                                <td>VAT (10%)</td>
+                                <td>${cart.grandTotal * 0.1} USD</td>
+                            </tr>
+                            <tr>
+                                <td>Totals Amount: </td>
+                                <td>${cart.grandTotal + (cart.grandTotal * 0.1)} USD</td>
+                            </tr>
+                        </table>
+                    </div>
 
-
-        </td>
-        <td><input type="number" value="1"></td>
-        <td>24.490.000₫</td>
-    </tr>
-    <tr>
-        <td>
-            <div class="cart-info">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/246200/redmi-10-gray-600x600.jpg" alt="">
-            <div>
-                <p>Xiaomi Redmi 10(6GB/128GB)</p>
-                <small>Price: 4.690.000₫</small>
-                <br>
-                <a href="">Xóa</a>
-            </div>
-            </div>
-
-
-        </td>
-        <td><input type="number" value="1"></td>
-        <td>4.690.000₫</td>
-    </tr>
-</table>
-
-
-<div class="total-price">
-    <table>
-        <tr>
-            <td>Subtotal</td>
-            <td>78.670.000₫</td>
-        </tr>
-        <tr>
-            <td>VAT (10%)</td>
-            <td>7.867.000₫</td>
-        </tr>
-        <tr>
-            <td>Totals Amount: </td>
-            <td>86.537.000₫</td>
-        </tr>
-    </table>
-</div>
-<a href="">
-    <button class="btn btn-continue " type="back">
-        <i class="fa fa-arrow-left" aria-hidden="true" ></i> continue shopping
-      </button>
-</a>
-    <a href=""><button class="btn btn-checkout mg " type="back" >
-        <i class="fas fa-shopping-cart" aria-hidden="true" ></i> Check out
-      </button></a>
- </div>
-
+                    <a href=""><button class="btn btn-checkout mg " type="back" >
+                            <i class="fas fa-shopping-cart" aria-hidden="true" ></i> Check out
+                        </button></a>
+                    </c:if>
+                </c:if>
+            <a href="">
+                <button class="btn btn-continue " type="back">
+                    <i class="fa fa-arrow-left" aria-hidden="true" ></i> continue shopping
+                </button>
+            </a>
+        </div>
     </body>
-
-</html>
-        --%>
-</body>
 </html>

@@ -16,6 +16,10 @@ public class CartObject implements Serializable {
     public Map<ProductDTO, Integer> getItems() {
         return items;
     }
+    
+    public void clearCart() {
+        this.items = null;
+    }
 
     public float getGrandTotal() {
         grandTotal = 0;

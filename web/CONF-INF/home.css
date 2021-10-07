@@ -453,7 +453,6 @@ b {
 .item img {
     padding-top: 20px;
 }
-/* 
 
 .cart-page{
     margin: 80px auto;
@@ -549,10 +548,14 @@ th:last-child{
 
 }
 
+.btn-remove-cart {
+    color: #000;
+    width: 100%;
+}
+
 .mg{
     margin-left: 1250px ;
 }
 .mg1{
     margin-left: 1436px ;
 }
-}*/
