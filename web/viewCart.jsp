@@ -258,24 +258,17 @@
 
  <div class="small-container cart-page">
     
-        <a href=""><button class="btn btn-clear " type="back">
+        <a href=""><button class="btn btn-clear mg1 " type="back">
         <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
       </button></a>
-            
-       <a href=""><button class="btn btn-checkout mg " type="back" >
-        <i class="fas fa-shopping-cart" aria-hidden="true" ></i> Check out
-      </button></a>
-            
-       
-    
     
 <table>
     
     
     <tr>
-        <th>Sản Phẩm</th>
-        <th>Số Lượng</th>
-        <th>Thành Tiền</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
     </tr>
     <tr>
         <td>
@@ -283,7 +276,7 @@
                 <img src="https://cdn.tgdd.vn/Products/Images/42/226935/samsung-galaxy-z-fold-3-silver-1-600x600.jpg" alt="">
             <div>
                 <p>Samsung Galaxy Z Fold3 5G 256GB</p>
-                <small>Giá: 49.490.000₫</small>
+                <small>Price: 49.490.000₫</small>
                 <br>
                 <a href="">Xóa</a>
             </div>
@@ -300,7 +293,7 @@
                 <img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-den-new-2-600x600.jpg" alt="">
             <div>
                 <p>IPhone 12 128GB</p>
-                <small>Giá: 24.490.000₫</small>
+                <small>Price: 24.490.000₫</small>
                 <br>
                 <a href="">Xóa</a>
             </div>
@@ -317,7 +310,7 @@
                 <img src="https://cdn.tgdd.vn/Products/Images/42/246200/redmi-10-gray-600x600.jpg" alt="">
             <div>
                 <p>Xiaomi Redmi 10(6GB/128GB)</p>
-                <small>Giá: 4.690.000₫</small>
+                <small>Price: 4.690.000₫</small>
                 <br>
                 <a href="">Xóa</a>
             </div>
@@ -334,23 +327,27 @@
 <div class="total-price">
     <table>
         <tr>
-            <td>Tổng thanh toán trước thuế</td>
+            <td>Subtotal</td>
             <td>78.670.000₫</td>
         </tr>
         <tr>
-            <td>Thuế VAT (10%)</td>
+            <td>VAT (10%)</td>
             <td>7.867.000₫</td>
         </tr>
         <tr>
-            <td>Tổng thanh toán sau thuế</td>
+            <td>Totals Amount: </td>
             <td>86.537.000₫</td>
         </tr>
     </table>
 </div>
-<a href=""><button class="btn btn-continue" type="back">
+<a href="">
+    <button class="btn btn-continue " type="back">
         <i class="fa fa-arrow-left" aria-hidden="true" ></i> continue shopping
+      </button>
+</a>
+    <a href=""><button class="btn btn-checkout mg " type="back" >
+        <i class="fas fa-shopping-cart" aria-hidden="true" ></i> Check out
       </button></a>
-    
  </div>
 
     </body>

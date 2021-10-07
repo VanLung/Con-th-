@@ -539,13 +539,20 @@ th:last-child{
 }
 .btn-clear {
     background-color: #FFC125;
+    text-align: right;
 }
 
 .btn-clear:hover {
     background-color: black;
     cursor: pointer;
     transition: .3s;
+
 }
+
 .mg{
-    margin-left: 1335px ;
+    margin-left: 1250px ;
+}
+.mg1{
+    margin-left: 1436px ;
+}
 }*/
