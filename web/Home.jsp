@@ -171,20 +171,23 @@
                 <c:forEach var="dto" items="${result}" varStatus="counter">
                     <div class="item">
                         <form action="DispatchServlet">
+                            <img src="${dto.imgLink}"  alt="..."><br />
                             <p class="item-title"><b>${dto.proName}</b></p>
-                            <img src="${dto.imgLink}" width="100" height="300" alt="..."><br />
                             <p class="item-body">${dto.description}</p>
-                            <p class="item-body">${dto.price} USD</p>
+                            <p class="item-price">${dto.price} USD</p>
                             <p class="item-body">${dto.stock} units in stock</p>
                             <input type="hidden" name="txtProductID" value="${dto.ID}" />
-                            <button type="submit" class="detail" name="action" value="details">
-                                <i class="fas fa-exclamation"></i> 
-                                Details
-                            </button>
-                            <button type="submit" class="order" name="action" value="order">
-                                <i class="fas fa-shopping-cart"></i> 
-                                Order Now
-                            </button>
+                            <div class="btn-btn">
+                                <button type="submit" class="detail" name="action" value="details">
+                                    <i class="fas fa-exclamation"></i> 
+                                    Details
+                                </button>
+                                <button type="submit" class="order" name="action" value="order">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                    Order Now
+                                </button>
+                            </div>
+
                         </form>
                     </div>
                 </c:forEach>         
