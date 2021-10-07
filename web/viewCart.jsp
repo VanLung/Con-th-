@@ -170,11 +170,11 @@
             <c:if test="${not empty cart}">
                 <c:set var="items" value="${cart.items}"/>
                 <c:if test="${not empty items}">
-                    <!--                    <a href="ClearCartServlet">
-                                            <button class="btn btn-clear mg1 " type="back">
-                                                <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
-                                            </button>
-                                        </a>-->
+                    <a href="ClearCartServlet">
+                        <button class="btn btn-clear mg1 " type="back">
+                            <i class="fas fa-window-close" aria-hidden="true" ></i> Clear
+                        </button>
+                    </a>
                     <table>
                         <tr>
                             <th>Product</th>
