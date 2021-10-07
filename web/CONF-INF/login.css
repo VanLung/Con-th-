@@ -1,75 +1,69 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Oct 6, 2021, 9:04:11 PM
-    Author     : Administrator
-*/
-header {
-    background-color: rgba(236, 236, 236, 0.925);
-    padding: 0.02%;
-    font-size: x-large;
-    text-indent: 1.6%;
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: Bradley Hand, cursive;
+    box-sizing: border-box;
 }
-
-.form-title {
-    width: 350px;
-    background-color: rgba(236, 236, 236, 0.925);
-    margin: auto;
-    padding: 5px -0.1px 5px 0;
-    margin-top: 30px;
-    text-indent: 8px;
-    border: 1px solid silver;
-    font-family: 'Times New Roman', Times, serif;
+header{
+    background-color: black;
+    min-height: 70px;
+    padding: 15px;
+    font-size: 80px;
+    color: #FFC125;
 }
-
-.login-form {
-    width: 350px;
-    margin: auto;
+main{
+    min-height: 300px;
+    padding: 7.5px 15px;
 }
-
-form {
-    padding: 12px;
-    border: 1px solid silver;
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.form-group {
-    padding-bottom: 20px;
-    border-radius: 14px;
+.login-form{
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 15px;
+    border: 2px dotted #cccccc;
+    border-radius: 10px;
 }
-
-.form-control {
-    position: relative;
-    line-height: 26px;
-    width: 320px;
-    border-radius: 5px;
-    border-color: silver;
-    border-style: solid;
+h3{
+    color: black;
+    font-size: 26px;
+    margin-bottom: 30px;
 }
-
-.error-control {
-    position: relative;
-    line-height: 26px;
-    width: 320px;
+.input-box{
+    margin-bottom: 10px;
 }
-
-.btn-login {
-    color: #fff !important;
-    background-color: rgb(73, 209, 73) !important;
-    border: 1px solid rgb(73, 209, 73) !important;
-    border-radius: 8px !important;
-    font-weight: bold !important;
-    padding: 0.6vw !important;
-    width: 100% !important;
+.input-box input{
     font-size: 16px;
-}
+    padding: 7.5px 15px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    outline: none;
+    border-radius: 10px;
 
-.form-control::placeholder {
-    text-indent: 6px;
 }
+.btn-box{
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
 
-.btn-login:hover {
-    cursor: pointer;
+}
+.btn-box button{
+    padding: 7.5px 15px;
+    border-radius: 10px;
+    background-color: #FFC125;
+    color: white;
+    border: none;
+    outline: none;
+}
+.backStore{
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
 }
