@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Oct 6, 2021, 8:23:14 PM
     Author     : Administrator
 */
-header {
+/*header {
     background-color: rgba(236, 236, 236, 0.925);
     padding: 0.05%;
     font-size: x-large;
@@ -89,9 +89,9 @@ form {
 
 .error-control {
     width: 200px
-}
+}*/
 
-/*
+
 *{
     padding: 0px;
     margin: 0px;
@@ -208,4 +208,3 @@ p{
   color: #FFC125;
 }
 
-*/

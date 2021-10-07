@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="login.css" rel="stylesheet" type="text/css"/>
+        <link href="CONF-INF/login.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" type="img/png" href="logo.png"/>
         <title>MobileStore - Điện Thoại thông minh chính hãng</title>
 
@@ -13,27 +13,29 @@
         </header>
         <main>
             <div class="container">
-            <div class="login-form">
-                <form action="" method="post">
-                    <h3>Please sign in</h3>
-                    <div class="input-box">
-                        <i ></i>
-                        <input type="text" placeholder="Username" name="txtUserID">
-                    </div>
-                    <div class="input-box">
-                        <i ></i>
-                        <input type="password" placeholder="Password" name="txtPassword">
-                    </div>
-                    <div class="btn-box">
-                        <button type="submit"><i class="fas fa-user-circle"></i>Login</button>
-                    </div>
-                </form>
-            </div>
+                <div class="login-form">
+                    <form action="DispatchServlet" method="post">
+                        <h3>Please sign in</h3>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="text" placeholder="Username" name="txtUserID">
+                        </div>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="password" placeholder="Password" name="txtPassword">
+                        </div>
+                        <div class="btn-box">
+                            <button type="submit" name="action" value="Login">
+                                <i class="fas fa-user-circle">
+                                    
+                                </i>Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>\
-            <div class="backStore">
-                <a href="home"><-- Back to Store</a>
-            </div>
+
         </main>
-        
-        </body>
+
+    </body>
 </html>

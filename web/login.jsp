@@ -9,43 +9,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="CONF-INF/login.css">
-    </head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="CONF-INF/login.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" type="img/png" href="logo.png"/>
+        <title>MobileStore - Điện Thoại thông minh chính hãng</title>
 
+    </head>
     <body>
         <header>
-            <h2>Mobile Store</h2> 
+            <div class="container">Moblie Store</div>
         </header>
-
-        <div class="login-form">
-            <div class="form-title">
-                <p>
-                    Please sign in
-                </p>
-            </div>
+        <main>
             <c:set var="error" value="${requestScope.INVALID_LOGIN}"/>
-            <form action="DispatchServlet">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="User name" name="txtUserID">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="txtPassword">
-                </div>
+            <div class="container">
+                <div class="login-form">
+                    <form action="DispatchServlet" method="post">
+                        <h3>Please sign in</h3>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="text" placeholder="Username" name="txtUserID">
+                        </div>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="password" placeholder="Password" name="txtPassword">
+                        </div>
+                        <c:if test="${not empty error.loginInfoNotMatch}">
+                            <font color="red" class="error-control">
+                            ${error.loginInfoNotMatch}
+                            </font>
+                        </c:if>
+                        <div class="btn-box">
+                            <button type="submit" name="action" value="Login">
+                                <i class="fas fa-user-circle">
 
-                <c:if test="${not empty error.loginInfoNotMatch}">
-                    <font color="red" class="error-control">
-                    ${error.loginInfoNotMatch}
-                    </font>
-                </c:if>
+                                </i>Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>\
 
-                <button type="submit" class="btn btn-login" name="action" value="Login">
-                    Login
-                </button>
-            </form>
-            </br>
-            <center>
-                <a href="ShowProductServlet">Back to store.</a>
-            </center>
-        </div>
+        </main>
+
     </body>
 </html>
