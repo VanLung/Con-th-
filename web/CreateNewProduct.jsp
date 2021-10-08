@@ -24,6 +24,7 @@
         </header>
         <nav>
             <h2> Add new product </h2>
+            <c:set var="errors" value="${requestScope.ERROR_ADD_PRODUCT}"/>
             <form action="DispatchServlet"  method="POST">
                 <div class="container"> 
                     <div class="row">
@@ -34,14 +35,28 @@
                             <input type="text" name="proName" value="" required>
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.proNameLengthErr}">
+                        <font color="red">
+                        ${errors.proNameLengthErr} 
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label for="country">Unit Price</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" name="price" value="" required>
+                            <input type="number" name="price" value="" required>
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.priceFormatErr}">
+                        <font color="red">
+                        ${errors.priceFormatErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label>Units in Stock</label>
@@ -50,6 +65,13 @@
                             <input type="number" name="stock" value="" required> 
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.stockFormatErr}">
+                        <font color="red">
+                        ${errors.stockFormatErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label>Description</label>
@@ -59,6 +81,13 @@
                                       style="height:50px"></textarea> 
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.descriptionLengthErr}">
+                        <font color="red">
+                        ${errors.descriptionLengthErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label>Manufacturer</label>
@@ -67,6 +96,13 @@
                             <input type="text" name="manufacturer" value=""> 
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.manufacturerLengthErr}">
+                        <font color="red">
+                        ${errors.manufacturerLengthErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label>Category</label>
@@ -75,6 +111,13 @@
                             <input type="text" name="category" value=""> 
                         </div>
                     </div>
+
+                    <c:if test="${not empty errors.categoryLengthErr}">
+                        <font color="red" class="error-control">
+                        ${errors.categoryLengthErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <div class="col-25">
                             <label>Condition</label>
@@ -90,8 +133,14 @@
                             <label>Products Image File</label>
                             <input type="text" name="imgLink" value=""> 
                         </div>
-
                     </div>
+
+                    <c:if test="${not empty errors.imgLengthErr}">
+                        <font color="red">
+                        ${errors.imgLengthErr}
+                        </font>
+                    </c:if>
+
                     <div class="row">
                         <button type="submit" name="action" value="Add">Add product</button>
                     </div>     
