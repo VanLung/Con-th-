@@ -1,4 +1,15 @@
 # Con-th-
+Group name: 
+
+Nguyễn Thiên Phúc : Nhóm Trưởng
+Nguyễn Gia Nguyên
+Nguyễn Tuấn Hoàng
+Nguyễn Văn Lưng
+Hoàng Anh Vũ
+Nguyễn Tiến Dũng
+Chung Hùng Khang
+
+
 
 Project name: MobileStore
 Packages: 
