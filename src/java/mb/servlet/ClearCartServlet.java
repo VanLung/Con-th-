@@ -2,30 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package phucnt.servlet;
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.Map;
-import java.util.Set;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import phucnt.tblProducts.CartObject;
-import phucnt.tblProducts.ProductDAO;
-import phucnt.tblProducts.ProductDTO;
+import mb.tblProducts.CartObject;
 
-@WebServlet(name = "AddToCartServlet", urlPatterns = {"/AddToCartServlet"})
-public class AddToCartServlet extends HttpServlet {
+@WebServlet(name = "ClearCartServlet", urlPatterns = {"/ClearCartServlet"})
+public class ClearCartServlet extends HttpServlet {
 
-    private final String HOME_PAGE = "ShowProductServlet";
-
-    private final String PARAM_ID = "txtProductID";
+    private final String CART_PAGE = "viewCart.jsp";
 
     private final String ATTR_CART = "CART";
 
@@ -33,31 +25,17 @@ public class AddToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String txtProID = request.getParameter(PARAM_ID);
-        String url = HOME_PAGE;
+        String url = CART_PAGE;
         try {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             if (session != null) {
                 CartObject cart = (CartObject) session.getAttribute(ATTR_CART);
-                if (cart == null) {
-                    cart = new CartObject();
+                if (cart != null) {
+                    cart.clearCart();
+                    session.setAttribute(ATTR_CART, cart);
                 }
-                ProductDAO productDAO = new ProductDAO();
-                int proID = Integer.parseInt(txtProID);
-                ProductDTO product = productDAO.showByID(proID);
-                cart.addPhone(product);
-                session.setAttribute(ATTR_CART, cart);
                 request.getRequestDispatcher(url).forward(request, response);
             }
-        } catch (NumberFormatException ex) {
-            log("AddToCartServlet _ NumberFormat: " + ex.getMessage());
-            response.sendError(461);
-        } catch (SQLException ex) {
-            log("AddToCartServlet _ SQL: " + ex.getMessage());
-            response.sendError(461);
-        } catch (NamingException ex) {
-            log("AddToCartServlet _ Naming: " + ex.getMessage());
-            response.sendError(461);
         } finally {
             out.close();
         }

@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>DispatchServlet</servlet-name>
-        <servlet-class>phucnt.servlet.DispatchServlet</servlet-class>
+        <servlet-class>mb.servlet.DispatchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DispatchServlet</servlet-name>
@@ -13,11 +13,9 @@
             30
         </session-timeout>
     </session-config>
-    
     <welcome-file-list>
         <welcome-file>ShowProductServlet</welcome-file>
     </welcome-file-list>
-    
     <error-page>
         <error-code>404</error-code>
         <location>/error404.html</location>
@@ -30,7 +28,6 @@
         <error-code>461</error-code>
         <location>/errorDatabase.html</location>
     </error-page>
-    
     <resource-ref>
         <res-ref-name>Kevin</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>

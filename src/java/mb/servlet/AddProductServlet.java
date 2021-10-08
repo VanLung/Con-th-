@@ -1,4 +1,4 @@
-package phucnt.servlet;
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import phucnt.tblProducts.ProductCreateError;
-import phucnt.tblProducts.ProductDAO;
+import mb.tblProducts.ProductCreateError;
+import mb.tblProducts.ProductDAO;
 
 @WebServlet(name = "AddProductServlet", urlPatterns = {"/AddProductServlet"})
 public class AddProductServlet extends HttpServlet {

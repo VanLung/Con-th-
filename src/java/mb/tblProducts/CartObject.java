@@ -1,4 +1,4 @@
-package phucnt.tblProducts;
+package mb.tblProducts;
 
 import java.io.Serializable;
 import java.util.HashMap;

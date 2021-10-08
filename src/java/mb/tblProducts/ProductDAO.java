@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package phucnt.tblProducts;
+package mb.tblProducts;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
-import phucnt.ultils.DBIHelper;
+import mb.ultils.DBIHelper;
 
 /**
  *

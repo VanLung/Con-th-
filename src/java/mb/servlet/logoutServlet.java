@@ -1,45 +1,56 @@
-package phucnt.servlet;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import phucnt.tblProducts.CartObject;
 
-@WebServlet(name = "RemoveFromCartServlet", urlPatterns = {"/RemoveFromCartServlet"})
-public class RemoveFromCartServlet extends HttpServlet {
+/**
+ *
+ * @author PC
+ */
+@WebServlet(name = "logoutServlet", urlPatterns = {"/logoutServlet"})
+public class logoutServlet extends HttpServlet {
 
-    private final String CART_PAGE = "viewCart.jsp";
+    private final String LOGIN_PAGE = "login.html";
 
-    private final String PARAM_ID = "txtProductID";
-
-    private final String ATTR_CART = "CART";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = CART_PAGE;
-        String txtProID = request.getParameter(PARAM_ID);
+        String url = LOGIN_PAGE;
         try {
+//            Cookie[] cookies = request.getCookies();
+//            for(Cookie cookie : cookies){
+//                cookie.setValue("");
+//                response.addCookie(cookie);
+//            }
             HttpSession session = request.getSession(false);
             if (session != null) {
-                CartObject cart = (CartObject) session.getAttribute(ATTR_CART);
-                if (cart != null) {
-                    int proID = Integer.parseInt(txtProID);
-                    cart.deletePhone(proID);
-                    session.setAttribute(ATTR_CART, cart);
-                }
-                request.getRequestDispatcher(url).forward(request, response);
+                session.invalidate();
             }
-        } catch (NumberFormatException ex) {
-            log("RemoveFromCartServlet _ NumberFormat: " + ex.getMessage());
-            response.sendError(461);
+
         } finally {
+            response.sendRedirect(url);
             out.close();
         }
     }

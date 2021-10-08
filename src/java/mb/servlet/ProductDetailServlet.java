@@ -1,42 +1,59 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package phucnt.servlet;
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import phucnt.tblProducts.CartObject;
+import mb.tblProducts.ProductDAO;
+import mb.tblProducts.ProductDTO;
 
-@WebServlet(name = "ClearCartServlet", urlPatterns = {"/ClearCartServlet"})
-public class ClearCartServlet extends HttpServlet {
+/**
+ *
+ * @author Nguyen Tien Dung SE150614
+ */
+@WebServlet(name = "ProductDetailServlet", urlPatterns = {"/ProductDetailServlet"})
+public class ProductDetailServlet extends HttpServlet {
+    private final String DETAIL_PAGE = "details.jsp";
 
-    private final String CART_PAGE = "viewCart.jsp";
-
-    private final String ATTR_CART = "CART";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = CART_PAGE;
+        String url = DETAIL_PAGE;
         try {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                CartObject cart = (CartObject) session.getAttribute(ATTR_CART);
-                if (cart != null) {
-                    cart.clearCart();
-                    session.setAttribute(ATTR_CART, cart);
-                }
-                request.getRequestDispatcher(url).forward(request, response);
-            }
-        } finally {
+            int id = Integer.parseInt(request.getParameter("txtProductID"));
+            ProductDAO dao = new ProductDAO();
+            ProductDTO result =  dao.showByID(id);
+            request.setAttribute("LOAD_DETAIL", result);
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch(SQLException e){
+            log("ProductDetailServlet _ SQL: " + e.getMessage());
+            response.sendError(461);
+        } catch(NamingException e){
+            log("ProductDetailServlet _ Naming: " + e.getMessage());
+            response.sendError(461);
+        }
+        finally{
+            
             out.close();
         }
     }

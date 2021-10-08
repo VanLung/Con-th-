@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package phucnt.tblUsers;
+package mb.tblUsers;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NamingException;
-import phucnt.ultils.DBIHelper;
+import mb.ultils.DBIHelper;
 
 /**
  *
@@ -23,7 +23,7 @@ public class UserDAO implements Serializable{
          PreparedStatement stm = null;
          ResultSet rs = null;
         try {
-            con =phucnt.ultils.DBIHelper.getConnection();
+            con =mb.ultils.DBIHelper.getConnection();
             if (con != null) {
                 String sql = "SELECT UserID, UserName "
                         + "FROM tblUser "

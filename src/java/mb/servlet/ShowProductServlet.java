@@ -1,56 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package phucnt.servlet;
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import mb.tblProducts.ProductDAO;
+import mb.tblProducts.ProductDTO;
 
-/**
- *
- * @author PC
- */
-@WebServlet(name = "logoutServlet", urlPatterns = {"/logoutServlet"})
-public class logoutServlet extends HttpServlet {
+@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
+public class ShowProductServlet extends HttpServlet {
 
-    private final String LOGIN_PAGE = "login.html";
+    private final String HOME_PAGE = "Home.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private final String ATTR_LIST_PRODUCT = "LIST_PRODUCT";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = LOGIN_PAGE;
+        String url = HOME_PAGE;
         try {
-//            Cookie[] cookies = request.getCookies();
-//            for(Cookie cookie : cookies){
-//                cookie.setValue("");
-//                response.addCookie(cookie);
-//            }
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
-
+            ProductDAO dao = new ProductDAO();
+            List<ProductDTO> products = dao.showMobile();
+            request.setAttribute(ATTR_LIST_PRODUCT, products);
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(ShowProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            response.sendRedirect(url);
             out.close();
         }
     }

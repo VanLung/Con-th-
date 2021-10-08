@@ -1,41 +1,44 @@
-package phucnt.servlet;
+package mb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import phucnt.tblProducts.ProductDAO;
-import phucnt.tblProducts.ProductDTO;
+import javax.servlet.http.HttpSession;
+import mb.tblProducts.CartObject;
 
-@WebServlet(name = "ShowProductServlet", urlPatterns = {"/ShowProductServlet"})
-public class ShowProductServlet extends HttpServlet {
+@WebServlet(name = "RemoveFromCartServlet", urlPatterns = {"/RemoveFromCartServlet"})
+public class RemoveFromCartServlet extends HttpServlet {
 
-    private final String HOME_PAGE = "Home.jsp";
+    private final String CART_PAGE = "viewCart.jsp";
 
-    private final String ATTR_LIST_PRODUCT = "LIST_PRODUCT";
-    
+    private final String PARAM_ID = "txtProductID";
+
+    private final String ATTR_CART = "CART";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = HOME_PAGE;
+        String url = CART_PAGE;
+        String txtProID = request.getParameter(PARAM_ID);
         try {
-            ProductDAO dao = new ProductDAO();
-            List<ProductDTO> products = dao.showMobile();
-            request.setAttribute(ATTR_LIST_PRODUCT, products);
-            request.getRequestDispatcher(url).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ShowProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
-            Logger.getLogger(ShowProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                CartObject cart = (CartObject) session.getAttribute(ATTR_CART);
+                if (cart != null) {
+                    int proID = Integer.parseInt(txtProID);
+                    cart.deletePhone(proID);
+                    session.setAttribute(ATTR_CART, cart);
+                }
+                request.getRequestDispatcher(url).forward(request, response);
+            }
+        } catch (NumberFormatException ex) {
+            log("RemoveFromCartServlet _ NumberFormat: " + ex.getMessage());
+            response.sendError(461);
         } finally {
             out.close();
         }
